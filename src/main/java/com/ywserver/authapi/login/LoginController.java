@@ -1,5 +1,6 @@
 package com.ywserver.authapi.login;
 
+import com.ywserver.authapi.user.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -14,13 +15,12 @@ public class LoginController {
 
     @GetMapping("/test")
     public ResponseEntity<String> LoginTest(){
-        log.info("로그인 테스트 수행");
         String result = loginService.LoginTestService();
         return ResponseEntity.ok(result);
     }
 
     @PostMapping("")
-    public ResponseEntity<String> Login(
+    public ResponseEntity<UserDto> Login(
             @RequestHeader("Authorization") String token
     ){
         return ResponseEntity.ok(loginService.getUserInfo(token));

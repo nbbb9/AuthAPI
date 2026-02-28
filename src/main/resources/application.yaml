@@ -1,0 +1,33 @@
+spring:
+  web:
+    resources:
+      static-locations: file:/media/
+  application:
+    name: AuthApi
+  config:
+    import: optional:file:./resources/.env
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: 포스트그래 사용해야지
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MariaDBDialect
+    hibernate:
+      ddl-auto: update
+server:
+  error:
+    include-message: always
+  port: 8080
+
+logging:
+  level:
+    org.hibernate: DEBUG
+    org.springframework: DEBUG
+
+jwt:
+  secret-key: ${JWT_SECRET_KEY}
